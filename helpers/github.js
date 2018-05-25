@@ -2,7 +2,7 @@ const request = require('request');
 const config = require('../config.js');
 const { url } = require('url');
 
-let getReposByUsername = (username) => {
+let getReposByUsername = (username, callback) => {
   // TODO - Use the request module to request repos for a specific
   // user from the github API
 
@@ -12,9 +12,9 @@ let getReposByUsername = (username) => {
   const url = 'https://api.github.com/users/' + username + '/repos';
   const repoUrl = new URL(url);
 
-  console.log('username in helper: ', username);
-  console.log('url in helper: ', url);
-  console.log('repo url in helper: ', repoUrl);
+  // console.log('username in helper: ', username);
+  // console.log('url in helper: ', url);
+  // console.log('repo url in helper: ', repoUrl);
 
   let options = {
     url: repoUrl,
@@ -27,9 +27,26 @@ let getReposByUsername = (username) => {
   request(options, (error, response, body) => {
     console.log('error:', error);
     console.log('statusCode:', response && response.statusCode);
-    const info = JSON.parse(body);
-    console.log('info: ', info)
+    const repoData = JSON.parse(body);
+    formattedData = [];
+    repoData.forEach(repo => {
+      let formattedRepo = formatRepo(repo);
+      formattedData.push(formattedRepo);
+    });
+    // console.log(formattedData);
+    callback(formattedData);
   });
 }
+
+const formatRepo = repo => {
+  let formattedRepo = {
+    name: repo.name,
+    owner: repo.owner.login,
+    url: repo.html_url,
+    stars: repo.stargazers_count,
+  };
+  return formattedRepo;
+}
+
 
 module.exports.getReposByUsername = getReposByUsername;
