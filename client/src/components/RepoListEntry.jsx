@@ -1,11 +1,11 @@
 import React from 'react';
 
 const RepoListEntry = ({repo}) => (
-  <div>
-    <li>
-    <a href={repo.url}> {repo.name} </a>
-    </li>
-  </div>
+  <tr>
+    <td>{repo.stars}</td>
+    <td><a href={repo.url}>{repo.name}</a></td>
+    <td><a href={repo.ownerUrl}>{repo.owner}</a></td>
+  </tr>
 )
 
 export default RepoListEntry;

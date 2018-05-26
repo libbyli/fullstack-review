@@ -40,6 +40,7 @@ const formatRepo = repo => {
     name: repo.name,
     owner: repo.owner.login,
     url: repo.html_url,
+    ownerUrl: repo.owner.html_url,
     stars: repo.stargazers_count,
   };
   return formattedRepo;

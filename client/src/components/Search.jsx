@@ -1,5 +1,9 @@
 import React from 'react';
 
+const divStyle = {
+  'max-width': '450px',
+};
+
 class Search extends React.Component {
   constructor(props) {
     super(props);
@@ -10,7 +14,6 @@ class Search extends React.Component {
     this.onChange = this.onChange.bind(this);
     this.search = this.search.bind(this);
   }
-
 
   onChange (e) {
     this.setState({
@@ -25,8 +28,22 @@ class Search extends React.Component {
   render() {
     return (<div>
       <h4>Add more repos!</h4>
-      Enter a github username: <input value={this.state.term} onChange={this.onChange}/>       
-      <button onClick={this.search}> Add Repos </button>
+      Enter a github username: 
+      <div className="input-group mb-3" style={divStyle}>
+      <input 
+        type="text"
+        className="form-control"
+        value={this.state.term} 
+        onChange={this.onChange}
+      />   
+      <div className="input-group-append">    
+      <button 
+        className="btn btn-outline-secondary"
+        type="button"
+        onClick={this.search}
+      > Add Repos 
+      </button></div>
+    </div>
     </div>) 
   }
 }

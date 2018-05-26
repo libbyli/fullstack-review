@@ -5,6 +5,7 @@ let repoSchema = mongoose.Schema({
   name: String,
   owner: String,
   url: { type: String, unique: true },
+  ownerUrl: String,
   stars: Number
 });
 
@@ -18,6 +19,7 @@ let insert = (repo) => {
     name: repo.name, 
     owner: repo.owner,
     url: repo.url,
+    ownerUrl: repo.ownerUrl,
     stars: repo.stars
   });
 
