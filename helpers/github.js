@@ -12,10 +12,6 @@ let getReposByUsername = (username, callback) => {
   const url = 'https://api.github.com/users/' + username + '/repos';
   const repoUrl = new URL(url);
 
-  // console.log('username in helper: ', username);
-  // console.log('url in helper: ', url);
-  // console.log('repo url in helper: ', repoUrl);
-
   let options = {
     url: repoUrl,
     headers: {
@@ -25,8 +21,8 @@ let getReposByUsername = (username, callback) => {
   };
 
   request(options, (error, response, body) => {
-    console.log('error:', error);
-    console.log('statusCode:', response && response.statusCode);
+    console.log('request error:', error);
+    console.log('request error statusCode:', response && response.statusCode);
     const repoData = JSON.parse(body);
     formattedData = [];
     repoData.forEach(repo => {

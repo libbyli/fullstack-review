@@ -25,6 +25,13 @@ app.post('/repos', function (req, res) {
 app.get('/repos', function (req, res) {
   // TODO - your code here!
   // This route should send back the top 25 repos
+  db.retrieve(docs => {
+    docs.sort((a, b) => {
+      return b.stars - a.stars;
+    });
+    console.log('sorted docs: ', docs);
+    res.send(docs);
+  });
 });
 
 let port = 1128;

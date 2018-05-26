@@ -20,10 +20,24 @@ class App extends React.Component {
       url: '/repos',
       data: term,
       success: data => {
-        console.log('data: ', data)
+        this.fetch();
+        console.log('search data: ', data)
       },
       error: error => {
-        console.log('error: ', error)
+        console.log('search error: ', error)
+      }
+    })
+  }
+
+  fetch() {
+    $.ajax({
+      type: 'GET',
+      url: '/repos',
+      success: data => {
+        console.log('fetched data: ', data)
+      },
+      error: error => {
+        console.log('fetch error: ', error)
       }
     })
   }

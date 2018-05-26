@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/fetcher');
 
-// const db = mongoose.connection;
-// db.on('error', console.error.bind(console, 'connection error:'));
-// db.once('open', function() {
-
 let repoSchema = mongoose.Schema({
   name: String,
   owner: String,
@@ -13,8 +9,6 @@ let repoSchema = mongoose.Schema({
 });
 
 let Repo = mongoose.model('Repo', repoSchema);
-
-// });
 
 let insert = (repo) => {
   // TODO: Your code here
@@ -29,9 +23,19 @@ let insert = (repo) => {
 
   repoEntry.save(err => {
     if (err) {
-      console.log('error: ', err);
+      console.log('repo insertion error: ', err);
     }
   });
 }
 
+let retrieve = (callback) => {
+  Repo.find({}, (err, docs) => {
+    if (err) {
+      console.log('repo retrieval error: ', err);
+    }
+    callback(docs);
+  });
+}
+
 module.exports.insert = insert;
+module.exports.retrieve = retrieve;
