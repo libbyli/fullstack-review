@@ -21,8 +21,10 @@ let getReposByUsername = (username, callback) => {
   };
 
   request(options, (error, response, body) => {
-    console.log('request error:', error);
-    console.log('request error statusCode:', response && response.statusCode);
+    if (error) {
+      console.log('request error:', error);
+      console.log('request error statusCode:', response && response.statusCode);
+    }
     const repoData = JSON.parse(body);
     formattedData = [];
     repoData.forEach(repo => {

@@ -18,8 +18,8 @@ app.post('/repos', function (req, res) {
     for (let i = 0; i < formattedData.length; i += 1) {
       db.insert(formattedData[i]);
     }
+    res.send('repo data sent to db');
   });
-  res.send('repo data sent to db');
 });
 
 app.get('/repos', function (req, res) {
@@ -29,7 +29,6 @@ app.get('/repos', function (req, res) {
     docs.sort((a, b) => {
       return b.stars - a.stars;
     });
-    console.log('sorted docs: ', docs);
     res.send(docs);
   });
 });

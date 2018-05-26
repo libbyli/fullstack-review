@@ -13,6 +13,10 @@ class App extends React.Component {
 
   }
 
+  componentDidMount() {
+    this.fetch();
+  }
+
   search (term) {
     console.log(`${term} was searched`);
     $.ajax({
@@ -21,7 +25,6 @@ class App extends React.Component {
       data: term,
       success: data => {
         this.fetch();
-        console.log('search data: ', data)
       },
       error: error => {
         console.log('search error: ', error)
@@ -34,7 +37,14 @@ class App extends React.Component {
       type: 'GET',
       url: '/repos',
       success: data => {
-        console.log('fetched data: ', data)
+        let dataArray = [];
+        data.forEach(repo => {
+          dataArray.push(repo);
+        });
+        dataArray = dataArray.slice(0, 25);
+        this.setState({
+          repos: dataArray,
+        });
       },
       error: error => {
         console.log('fetch error: ', error)
