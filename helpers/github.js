@@ -1,6 +1,7 @@
 const request = require('request');
 const config = require('../config.js');
 const { url } = require('url');
+const db = require('../database/index');
 
 let getReposByUsername = (username, callback) => {
   // TODO - Use the request module to request repos for a specific
@@ -31,6 +32,9 @@ let getReposByUsername = (username, callback) => {
       let formattedRepo = formatRepo(repo);
       formattedData.push(formattedRepo);
     });
+    for (let i = 0; i < formattedData.length; i += 1) {
+      db.insert(formattedData[i]);
+    }
     callback(formattedData);
   });
 }

@@ -27,9 +27,9 @@ class Search extends React.Component {
 
   render() {
     return (<div>
-      <h4>Add more repos!</h4>
-      Enter a github username: 
-      <div className="input-group mb-3" style={divStyle}>
+      <h4 className="text-center">Add more repos!</h4>
+      <p className="text-center">Enter a github username:</p>
+      <center><div className="input-group mb-3" style={divStyle}>
       <input 
         type="text"
         className="form-control"
@@ -43,7 +43,7 @@ class Search extends React.Component {
         onClick={this.search}
       > Add Repos 
       </button></div>
-    </div>
+    </div></center>
     </div>) 
   }
 }
