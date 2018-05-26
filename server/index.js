@@ -19,8 +19,6 @@ app.post('/repos', function (req, res) {
 });
 
 app.get('/repos', function (req, res) {
-  // TODO - your code here!
-  // This route should send back the top 25 repos
   db.retrieve((err, result) => {
     if (err) {
       console.log('error in get request: ', err);

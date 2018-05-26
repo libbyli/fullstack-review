@@ -1,7 +1,7 @@
 import React from 'react';
 
 const divStyle = {
-  'max-width': '450px',
+  maxWidth: '450px',
 };
 
 class Search extends React.Component {
