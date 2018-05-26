@@ -33,7 +33,6 @@ let getReposByUsername = (username, callback) => {
       let formattedRepo = formatRepo(repo);
       formattedData.push(formattedRepo);
     });
-    // console.log(formattedData);
     callback(formattedData);
   });
 }

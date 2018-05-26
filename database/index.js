@@ -8,7 +8,7 @@ mongoose.connect('mongodb://localhost/fetcher');
 let repoSchema = mongoose.Schema({
   name: String,
   owner: String,
-  url: String,
+  url: { type: String, unique: true },
   stars: Number
 });
 
@@ -16,11 +16,22 @@ let Repo = mongoose.model('Repo', repoSchema);
 
 // });
 
-let save = (repos) => {
+let insert = (repo) => {
   // TODO: Your code here
   // This function should save a repo or repos to
   // the MongoDB
-  const user = new Repo(repos)
+  const repoEntry = new Repo({
+    name: repo.name, 
+    owner: repo.owner,
+    url: repo.url,
+    stars: repo.stars
+  });
+
+  repoEntry.save(err => {
+    if (err) {
+      console.log('error: ', err);
+    }
+  });
 }
 
-module.exports.save = save;
+module.exports.insert = insert;
