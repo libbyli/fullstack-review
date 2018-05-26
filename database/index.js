@@ -12,9 +12,6 @@ let repoSchema = mongoose.Schema({
 let Repo = mongoose.model('Repo', repoSchema);
 
 let insert = (repo) => {
-  // TODO: Your code here
-  // This function should save a repo or repos to
-  // the MongoDB
   const repoEntry = new Repo({
     name: repo.name, 
     owner: repo.owner,
@@ -34,8 +31,9 @@ let retrieve = (callback) => {
   Repo.find({}, (err, docs) => {
     if (err) {
       console.log('repo retrieval error: ', err);
+      callback(err, docs);
     }
-    callback(docs);
+    callback(null, docs);
   });
 }
 
